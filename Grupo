@@ -1,0 +1,118 @@
+import java.util.Collection;
+import java.util.LinkedList;
+
+/**
+ * Clase que representa un grupo de contactos con un nombre, categoría y una lista de contactos asociados.
+ */
+public class Grupo {
+    // Atributos de la clase
+    private String nombre; // Nombre del grupo
+    public enum Categoria{
+        OFICINA,
+        FIESTA,
+        AMIGOS,
+        FAMILIA
+    }
+    private Categoria categoria; // Categoría del grupo
+    private Collection<Contacto> lista_de_contactos; // Lista de contactos asociados al grupo
+
+    /**
+     * Constructor de la clase Grupo.
+     * 
+     * @param nombre Nombre del grupo
+     * @param categoria Categoría del grupo
+     */
+    public Grupo (String nombre, Categoria categoria){
+        this.nombre = nombre;
+        this.categoria = categoria;
+        lista_de_contactos = new LinkedList<>();
+    }
+
+    // Métodos getter y setter para los atributos de la clase
+    public String getNombre(){
+        return nombre;
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public Categoria getCategoria(){
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria){
+        this.categoria = categoria;
+    }
+
+    public Collection<Contacto> getLista_Contactos() {
+        return lista_de_contactos;
+    }
+
+    public void setLista_Contactos(Collection<Contacto> lista_contactos) {
+         this.lista_de_contactos = lista_contactos;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder mensaje = new StringBuilder(
+            "Grupo: " + nombre + ", Categoria: " + categoria + "\nContactos:\n"
+        );
+        for (Contacto contacto : lista_de_contactos) {
+            mensaje.append(" - ").append(contacto.getNombre()).append("\n");
+        }
+        return mensaje.toString();
+    }
+
+    /**
+     * Método que busca un contacto en la lista de contactos del grupo.
+     * 
+     * @param nuevocontacto Contacto a buscar
+     * @return Contacto encontrado o null si no existe
+     */
+    private Contacto buscar_contacto(Contacto nuevocontacto) {
+        Contacto contactoencontrado = null;
+        for (Contacto contacto : lista_de_contactos) {
+            if (nuevocontacto.getNombre().equals(contacto.getNombre()) && 
+            nuevocontacto.getTelefono().equals(contacto.getTelefono())) {
+                contactoencontrado = contacto;
+                return contactoencontrado;
+            }
+        }
+        return contactoencontrado;
+    }
+
+    /**
+     * Método que agrega un contacto al grupo siempre que este no esté agregado y halla menos de 5.
+     * 
+     * @param nuevocontacto Contacto a agregar
+     * @return Mensaje indicando si el contacto fue agregado correctamente o no
+     */
+    public String agregar_contacto_a_grupo(Contacto nuevocontacto){
+        String mensaje = "";
+        Contacto contacto_encontrado = null;
+        contacto_encontrado = buscar_contacto(nuevocontacto);
+        if (contacto_encontrado == null && lista_de_contactos.size() < 5) {
+            mensaje = "Agregaste correctamente al contacto";
+            lista_de_contactos.add(nuevocontacto);
+        }else{
+            mensaje = "No se puede agregar este contacto al grupo";
+        }
+        return mensaje;
+    }
+
+    /**
+     * Método que elimina un contacto de la lista de contactos del grupo.
+     * 
+     * @param contacto Contacto a eliminar
+     * @return Mensaje indicando si el contacto fue eliminado correctamente o no
+     */
+    public String eliminar_contacto_de_grupo(Contacto contacto){
+        String mensaje = "Este contacto no existe en la reunión";
+        if (lista_de_contactos.contains(contacto)) {
+            lista_de_contactos.remove(contacto);
+            mensaje = "El contacto ha sido eliminado correctamente";
+        }
+        return mensaje;
+    }
+}
