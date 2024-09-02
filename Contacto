@@ -1,0 +1,75 @@
+/**
+ * Clase que representa un contacto con un nombre, alias, dirección, teléfono y correo electrónico.
+ */
+public class Contacto {
+    // Atributos de la clase
+    private String nombre; // Nombre del contacto
+    private String alias; // Alias del contacto
+    private String direccion; // Dirección del contacto
+    private String telefono; // Teléfono del contacto
+    private String email; // Correo electrónico del contacto
+
+    /**
+     * Constructor de la clase Contacto.
+     * 
+     * @param nombre Nombre del contacto
+     * @param alias Alias del contacto
+     * @param direccion Dirección del contacto
+     * @param telefono Teléfono del contacto
+     * @param email Correo electrónico del contacto
+     */
+    public Contacto(String nombre, String alias, String direccion, String telefono, String email){
+        this.nombre = nombre;
+        this.alias = alias;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+    }
+
+    // Métodos getter y setter para los atributos de la clase
+    public String getNombre(){
+        return nombre;
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public String getDireccion(){
+        return direccion;
+    }
+
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
+    }
+
+    public String getTelefono(){
+        return telefono;
+    }
+
+    public void setTelefono(String telefono){
+        this.telefono = telefono;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    @Override
+    public String toString(){
+        return "Contacto [nombre= " + nombre + ", alias= " + alias + ", direccion= " + direccion + ", telefono= " + telefono + 
+        ", email= " + email + "]";
+    }
+}
