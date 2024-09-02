@@ -1,0 +1,85 @@
+import java.util.ArrayList;
+/**
+ * Clase que representa una reunión con una descripción, fecha, hora y un grupo de contactos asociados.
+ */
+public class Reunion {
+
+    // Atributos de la clase
+    private String descripcion; // Descripción de la reunión
+    private String fecha; // Fecha de la reunión
+    private String hora; // Hora de la reunión
+    private ArrayList<Contacto> lista_contactos; // Lista de contactos asociados a la reunión
+    private Grupo grupo_asociado; // Grupo de contactos asociado a la reunión
+
+    /**
+     * Constructor de la clase Reunion.
+     * 
+     * @param descripcion Descripción de la reunión
+     * @param fecha Fecha de la reunión
+     * @param hora Hora de la reunión
+     * @param grupo Grupo de contactos asociado a la reunión
+     */
+    public Reunion(String descripcion, String fecha, String hora, Grupo grupo) {
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.grupo_asociado = grupo;
+        lista_contactos = new ArrayList<Contacto>();
+        agregarContactosDelGrupo();
+    }
+
+    // Métodos getter y setter para los atributos de la clase
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    @Override
+    public String toString() {
+        return "Reunion [descripcion=" + descripcion + ", fecha=" + fecha + ", hora=" + hora + ", lista_contactos="
+                + lista_contactos + "]";
+    }
+
+    /**
+     * Método que agrega los contactos del grupo asociado a la lista de contactos de la reunión.
+     */
+    public void agregarContactosDelGrupo() {
+        for (Contacto contacto : grupo_asociado.getLista_Contactos()) {
+            lista_contactos.add(contacto);
+        }
+    }
+
+    /**
+     * Método que elimina un contacto de la lista de contactos de la reunión.
+     * 
+     * @param contacto Contacto a eliminar
+     * @return Mensaje indicando si el contacto fue eliminado correctamente o no
+     */
+    public String eliminar_contacto_de_reunion(Contacto contacto){
+        String mensaje = "Este contacto no existe en la reunión";
+        if (lista_contactos.contains(contacto)) {
+            lista_contactos.remove(contacto);
+            mensaje = "El contacto ha sido eliminado correctamente";
+        }
+        return mensaje;
+    }
+}
