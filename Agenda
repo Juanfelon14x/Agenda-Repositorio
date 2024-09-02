@@ -1,0 +1,76 @@
+import java.util.ArrayList;
+
+/**
+ * Clase que representa una agenda.
+ */
+public class Agenda{
+    private ArrayList<Reunion> listaReuniones;
+    private ArrayList<Grupo> listaGrupos;
+    private ArrayList<Contacto> listaContactos;
+
+    /**
+     * Constructor de la clase Agenda.
+     */
+    public Agenda() {
+        this.listaReuniones = new ArrayList<>();
+        this.listaGrupos = new ArrayList<>();
+        this.listaContactos = new ArrayList<>();
+    }
+
+    /**
+     * Método para agregar una reunión a la agenda.
+     * @param reunion La reunión a agregar.
+     */
+    public void agregarReunion(Reunion reunion) {
+        listaReuniones.add(reunion);
+    }
+
+    /**
+     * Método para agregar un grupo a la agenda.
+     * @param grupo El grupo a agregar.
+     */
+    public void agregarGrupo(Grupo grupo) {
+        listaGrupos.add(grupo);
+    }
+
+    /**
+     * Método para agregar un contacto a la agenda.
+     * @param contacto El contacto a agregar.
+     */
+    public void agregarContacto(Contacto contacto) {
+        listaContactos.add(contacto);
+    }
+
+    /**
+     * Método para obtener la lista de reuniones de la agenda.
+     * @return La lista de reuniones de la agenda.
+     */
+    public ArrayList<Reunion> getListaReuniones() {
+        return listaReuniones;
+    }
+
+    /**
+     * Método para obtener la lista de grupos de la agenda.
+     * @return La lista de grupos de la agenda.
+     */
+    public ArrayList<Grupo> getListaGrupos() {
+        return listaGrupos;
+    }
+
+    /**
+     * Método para obtener la lista de contactos de la agenda.
+     * @return La lista de contactos de la agenda.
+     */
+    public ArrayList<Contacto> getListaContactos() {
+        return listaContactos;
+    }
+
+    @Override
+    public String toString() {
+        return "Agenda{" +
+                "listaReuniones=" + listaReuniones +
+                ", listaGrupos=" + listaGrupos +
+                ", listaContactos=" + listaContactos +
+                '}';
+    }
+}
